@@ -1,7 +1,7 @@
-#Support for the Society
+# Support for the Society
 This platform is dedicated to empowering and assisting cancer patients by providing a comprehensive space for motivation, guidance, and community support. It shares inspiring patient stories, practical resources, and educational content that raises awareness about early detection, treatment options, mental well-being, and maintaining a healthy lifestyle during and after cancer. By connecting patients, survivors, and volunteers, the platform fosters a supportive community where individuals can share experiences, contribute to awareness campaigns, and actively participate in initiatives that make a difference.
 
 The project aims to inspire hope, encourage engagement, and provide a reliable, user-friendly space for learning, sharing, and contributing to society’s fight against cancer. It serves as a hub for collaboration, support, and information, ensuring that patients and their families feel guided, motivated, and connected throughout their journey.
 
-#Technologies Used:
+# Technologies Used:
 The platform is built using HTML and Tailwind CSS for responsive and accessible design, JavaScript for dynamic interactions, Node.js for server-side functionality, and MySQL for secure and structured data management.
