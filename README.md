@@ -1,1 +1,2 @@
 # Support for the Society
+A platform dedicated to empowering and assisting cancer patients by sharing motivational stories, resources, and guidance. It connects patients, survivors, and volunteers, raising awareness about early detection, mental well-being, and healthy living during and after cancer. The project aims to inspire hope, encourage community support, and provide a trusted space for learning, sharing, and contributing to society’s fight against cancer.
