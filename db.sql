@@ -1,9 +1,11 @@
 CREATE DATABASE cancer_patient_support;
 USE cancer_patient_support;
 
+-- Volunteers table
 CREATE TABLE volunteers (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  role VARCHAR(100),
+  role VARCHAR(100),                         
+  role_description TEXT,                     
   name VARCHAR(100) NOT NULL,
   age INT CHECK (age >= 18 AND age <= 100),
   email VARCHAR(150) NOT NULL UNIQUE,
@@ -11,7 +13,7 @@ CREATE TABLE volunteers (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-
+-- Donations table (optional, uncomment when you need)
 -- CREATE TABLE donations (
 --   id INT AUTO_INCREMENT PRIMARY KEY,
 --   name VARCHAR(100) NOT NULL,
@@ -23,6 +25,7 @@ CREATE TABLE volunteers (
 --   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 -- );
 
+-- Contact messages table
 CREATE TABLE contact_messages (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(100) NOT NULL,
@@ -30,3 +33,6 @@ CREATE TABLE contact_messages (
   message TEXT NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+select * from volunteers;
+select * from contact_messages;

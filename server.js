@@ -1,4 +1,4 @@
-const express = require("express"); 
+const express = require("express");  
 const cors = require("cors");
 const mysql = require("mysql2");
 require("dotenv").config();
@@ -25,19 +25,24 @@ db.connect(err => {
   console.log("Connected to MySQL database");
 });
 
-
+// Root route
 app.get("/", (req, res) => {
   res.send("Backend is running!");
 });
 
-//  Volunteer Form Submission
+// Volunteer Form Submission
 app.post("/api/volunteers", (req, res) => {
-  const { role, name, age, email, gender } = req.body;
-  const query = "INSERT INTO volunteers (role, name, age, email, gender) VALUES (?, ?, ?, ?, ?)";
-  db.query(query, [role, name, age, email, gender], (err, result) => {
+  const { role, role_description, name, age, email, gender } = req.body;
+
+  const query = `
+    INSERT INTO volunteers (role, role_description, name, age, email, gender)
+    VALUES (?, ?, ?, ?, ?, ?)
+  `;
+
+  db.query(query, [role, role_description, name, age, email, gender], (err, result) => {
     if (err) {
       console.error(err);
-      return res.status(500).json({ message: "Database error" });
+      return res.status(500).json({ message: "Check email id again" });
     }
     res.json({ message: "Volunteer registered successfully! Our team will contact you soon." });
   });
@@ -50,12 +55,11 @@ app.post("/api/contact", (req, res) => {
   db.query(query, [name, email, message], (err, result) => {
     if (err) {
       console.error(err);
-      return res.status(500).json({ message: "Database error" });
+      return res.status(500).json({ message: "Try again" });
     }
     res.json({ message: "Message sent successfully! Thank you for your valuable concern." });
   });
 });
-
 
 // Start Server
 const PORT = process.env.PORT || 5000;
