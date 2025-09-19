@@ -1,6 +1,4 @@
-// ------------------------
 // Smooth Scroll for all anchor links
-// ------------------------
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     e.preventDefault();
@@ -11,9 +9,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// ------------------------
 // Volunteer Role UI Handling
-// ------------------------
 const volunterWorking = document.querySelector("#volbut");
 const volList = document.querySelector("#volList");
 const formDiv = document.getElementById("volunteerForm");
@@ -77,12 +73,10 @@ volunterWorking.addEventListener("click", () => {
 // Show form when clicking on volunteer role
 volList.addEventListener("click", (e) => {
   if (e.target.tagName === "LI") {
-    // Short role name
     const fullText = e.target.textContent;
     const roleShort = fullText.split(":")[0].trim();
     roleInput.value = roleShort;
 
-    // Set hidden role_description input
     const descriptionInput = document.getElementById("vdescription");
     descriptionInput.value = e.target.dataset.description;
 
@@ -90,9 +84,7 @@ volList.addEventListener("click", (e) => {
   }
 });
 
-// ------------------------
 // Blog Read More/Less
-// ------------------------
 const blogButton = document.querySelectorAll(".blogbut");
 const blogContent = document.querySelectorAll(".blog-content");
 
@@ -109,9 +101,7 @@ blogButton.forEach((button, index) => {
   });
 });
 
-// ------------------------
 // Volunteer Form Submission to Backend
-// ------------------------
 const volunteerForm = document.getElementById("detailsForm");
 volunteerForm.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -141,9 +131,7 @@ volunteerForm.addEventListener("submit", async (e) => {
   }
 });
 
-// ------------------------
 // Contact Form Submission to Backend
-// ------------------------
 const contactForm = document.getElementById("contactForm");
 contactForm.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -165,6 +153,47 @@ contactForm.addEventListener("submit", async (e) => {
     contactForm.reset();
   } catch (err) {
     alert("Error submitting message");
+    console.error(err);
+  }
+});
+
+// Donation Form Submission to Backend
+const donationForm = document.getElementById("donationForm");
+
+donationForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const donor_name = document.getElementById("donorName").value.trim();
+  const donor_email = document.getElementById("donorEmail").value.trim();
+  const donation_amount = parseFloat(document.getElementById("donationAmount").value);
+
+  if (!donor_name || !donor_email || !donation_amount) {
+    alert("Please fill all fields");
+    return;
+  }
+
+  if (donation_amount <= 0 || donation_amount > 150) {
+    alert("Donation amount must be between ₹1 and ₹150.");
+    return;
+  }
+
+  try {
+    const res = await fetch("http://localhost:5000/api/donations", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ donor_name, donor_email, donation_amount })
+    });
+
+    const result = await res.json();
+
+    if (res.ok) {
+      alert(`Thank you, ${donor_name}! Your donation of ₹${donation_amount} is successful. Receipt will be sent to your email: ${donor_email}.`);
+      donationForm.reset();
+    } else {
+      alert(result.message || "Error saving donation. Please try again.");
+    }
+  } catch (err) {
+    alert("Error connecting to server. Please try again.");
     console.error(err);
   }
 });

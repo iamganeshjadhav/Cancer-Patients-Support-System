@@ -13,17 +13,16 @@ CREATE TABLE volunteers (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Donations table (optional, uncomment when you need)
--- CREATE TABLE donations (
---   id INT AUTO_INCREMENT PRIMARY KEY,
---   name VARCHAR(100) NOT NULL,
---   email VARCHAR(100) NOT NULL,
---   amount DECIMAL(10,2) NOT NULL,
---   payment_id VARCHAR(255),          -- Instamojo payment_id (filled after success)
---   order_id VARCHAR(255),            -- Instamojo payment_request_id
---   status ENUM('PENDING','SUCCESS','FAILED') DEFAULT 'PENDING',
---   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
--- );
+-- Donations table 
+CREATE TABLE donations (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    donor_name VARCHAR(150) NOT NULL,
+    donor_email VARCHAR(150) NOT NULL,
+    donation_amount DECIMAL(10,2) NOT NULL 
+        CHECK (donation_amount >= 1 AND donation_amount <= 150),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 
 -- Contact messages table
 CREATE TABLE contact_messages (
@@ -36,3 +35,4 @@ CREATE TABLE contact_messages (
 
 select * from volunteers;
 select * from contact_messages;
+select * from donations;
