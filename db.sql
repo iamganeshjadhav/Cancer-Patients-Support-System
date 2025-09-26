@@ -35,4 +35,4 @@ CREATE TABLE contact_messages (
 
 select * from volunteers;
 select * from contact_messages;
-select * from donations;
+select * from donations
